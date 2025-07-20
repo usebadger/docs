@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated: January 2024**
+**Last updated: July 2025**
 
 This Privacy Policy explains how Badger ("we," "us," or "our") collects, uses, and protects your information when you use our gamification platform and services ("Service").
 

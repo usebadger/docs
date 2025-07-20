@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:usebadger/docs.git",
+  "author": "Jack Ellis <jack.m.ellis@hotmail.co.uk>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "serve": "npx serve dist"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.0.0",
+    "fs-extra": "^11.2.0"
+  }
+}

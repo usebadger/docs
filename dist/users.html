@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Badger Documentation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Geist', Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background: #f8f5f0;
+            color: #171717;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: #72a276;
+            color: #ffffff;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .sidebar-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .nav {
+            padding: 0 2rem;
+        }
+        
+        .nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s;
+            font-weight: 400;
+        }
+        
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        .nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
+        .main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 3rem;
+            max-width: calc(100vw - 280px);
+        }
+        
+        .content {
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #171717;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #171717;
+            border-bottom: 2px solid #72a276;
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.75rem;
+            color: #171717;
+            font-weight: 500;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            color: #171717;
+            font-weight: 500;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #444444;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            color: #444444;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: rgba(114, 162, 118, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Geist Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #72a276;
+        }
+        
+        pre {
+            background: rgba(114, 162, 118, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid rgba(114, 162, 118, 0.2);
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #171717;
+        }
+        
+        blockquote {
+            border-left: 4px solid #72a276;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666b6a;
+            background: rgba(114, 162, 118, 0.05);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(114, 162, 118, 0.2);
+        }
+        
+        th {
+            background: rgba(114, 162, 118, 0.1);
+            font-weight: 600;
+            color: #171717;
+        }
+        
+        a {
+            color: #72a276;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #5a8a5e;
+        }
+        
+        .highlight {
+            background: rgba(232, 116, 97, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(232, 116, 97, 0.3);
+            margin: 1rem 0;
+        }
+        
+        strong {
+            color: #171717;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #666b6a;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main {
+                margin-left: 0;
+                max-width: 100vw;
+                padding: 2rem 1rem;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1000;
+                background: #72a276;
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 1.2rem;
+            }
+        }
+        
+        .mobile-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>Badger</h1>
+            <p>Documentation</p>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="active">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+        </nav>
+    </div>
+    
+    <main class="main">
+        <div class="content">
+            <h1>Users</h1>
+<p>Users in Badger are automatically created when you send events. There’s no need to manually create or manage user accounts - Badger handles this automatically as users interact with your app.</p>
+<h2>How Users Work</h2>
+<h3>Automatic Creation</h3>
+<p>Users are created automatically when you send their first event:</p>
+<pre><code class="language-typescript">// This automatically creates user &quot;user123&quot; if they don't exist
+await badger.events.sendEvent({
+  userId: &quot;user123&quot;,
+  event: &quot;login&quot;,
+});
+</code></pre>
+<h3>User Identification</h3>
+<p>Users are identified by their <code>userId</code> - a unique string that you choose. This could be:</p>
+<ul>
+<li>A database ID from your user system</li>
+<li>An email address</li>
+<li>A username</li>
+<li>Any unique identifier you prefer</li>
+</ul>
+<h2>Getting User Information</h2>
+<h3>Get a Specific User</h3>
+<pre><code class="language-typescript">const user = await badger.users.getUser(&quot;user123&quot;);
+
+console.log(`User ID: ${user.userId}`);
+console.log(`Total points: ${user.points}`);
+console.log(`Created: ${user.createdAt}`);
+console.log(`Last activity: ${user.updatedAt}`);
+</code></pre>
+<h3>List All Users</h3>
+<pre><code class="language-typescript">// Get all users
+const { users } = await badger.users.getUsers();
+
+// Get users for a badge
+const badge = await badger.badges.getBadge(&quot;task_mater&quot;);
+const { users } = await badge.getUsers();
+</code></pre>
+<h2>User Badges</h2>
+<h3>Get All User Badges</h3>
+<pre><code class="language-typescript">// Get all badges for a user
+const { badges } = await badger.users.getUserBadges(&quot;user123&quot;);
+
+// Filter by status, category, etc.
+const { badges } = await badger.users.getUserBadges(&quot;user123&quot;, {
+  status: &quot;COMPLETE&quot;, // or &quot;INCOMPLETE&quot;, &quot;NOT_STARTED&quot;, &quot;ALL&quot;
+  category: &quot;onboarding&quot;,
+});
+</code></pre>
+<h3>Get a Specific User Badge</h3>
+<pre><code class="language-typescript">const userBadge = await badger.users.getUserBadge(&quot;user123&quot;, &quot;first_purchase&quot;);
+
+console.log(`Badge: ${userBadge.badge.name}`);
+console.log(`Status: ${userBadge.status}`);
+console.log(`Progress: ${userBadge.progress}%`);
+console.log(`Unlocked: ${userBadge.unlockedAt}`);
+</code></pre>
+<h3>Get Badge Progress Details</h3>
+<pre><code class="language-typescript">const userBadge = await badger.users.getUserBadge(&quot;user123&quot;, &quot;task_master&quot;);
+
+// Get detailed condition progress
+const conditions = await userBadge.getConditions();
+
+conditions.forEach((condition) =&gt; {
+  console.log(`Condition: ${condition.type}`);
+  console.log(`Progress: ${condition.progress}%`);
+  console.log(`Status: ${condition.status}`);
+  console.log(`Current value: ${condition.value}/${condition.target}`);
+});
+</code></pre>
+<h2>User Rewards</h2>
+<h3>Get User Points</h3>
+<pre><code class="language-typescript">const user = await badger.users.getUser(&quot;user123&quot;);
+console.log(`Total points: ${user.points}`);
+</code></pre>
+<h3>Get User Rewards</h3>
+<pre><code class="language-typescript">// Get all rewards earned by a user
+const userRewards = await badger.users.getUserRewards(&quot;user123&quot;);
+
+userRewards.forEach((reward) =&gt; {
+  console.log(`Reward: ${reward.type}`);
+  console.log(`Badge: ${reward.badgeId}`);
+  console.log(`Earned: ${reward.earnedAt}`);
+
+  if (reward.type === &quot;points&quot;) {
+    console.log(`Points: ${reward.points}`);
+  } else {
+    console.log(`Metadata: ${JSON.stringify(reward.metadata)}`);
+  }
+});
+</code></pre>
+<h2>Related Documentation</h2>
+<ul>
+<li><strong><a href="./badges.md">Badges</a></strong> - Learn about badge creation and management</li>
+<li><strong><a href="./events.md">Events</a></strong> - Understand how to track user actions</li>
+<li><strong><a href="./rewards.md">Rewards</a></strong> - See how rewards work with users</li>
+<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+</ul>
+
+        </div>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebar');
+                const toggle = document.querySelector('.mobile-toggle');
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

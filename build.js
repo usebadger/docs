@@ -334,18 +334,18 @@ function generateHTML(content, title, currentPage) {
 
 async function build() {
   try {
-    // Create dist directory
-    await fs.ensureDir("dist");
+    // Create docs directory
+    await fs.ensureDir("docs");
 
     // Copy any static assets
     if (await fs.pathExists("assets")) {
-      await fs.copy("assets", "dist/assets");
+      await fs.copy("assets", "docs/assets");
     }
 
     // Build each page
     for (const page of pages) {
       const markdownPath = path.join("src", page.file);
-      const htmlPath = path.join("dist", page.url);
+      const htmlPath = path.join("docs", page.url);
 
       if (await fs.pathExists(markdownPath)) {
         const markdown = await fs.readFile(markdownPath, "utf8");
@@ -359,7 +359,7 @@ async function build() {
       }
     }
 
-    console.log("Build complete! Files generated in dist/");
+    console.log("Build complete! Files generated in docs/");
   } catch (error) {
     console.error("Build failed:", error);
     process.exit(1);

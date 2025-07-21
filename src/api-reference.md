@@ -10,7 +10,7 @@ The official Badger SDK provides a simple way to integrate Badger into your appl
 
 For direct API access and advanced integrations:
 
-- **[API Documentation](https://docs.api.usebadger.dev)** - Complete REST API reference
+- **[API Documentation](https://api.usebadger.dev/docs)** - Complete REST API reference
 
 ## Getting Help
 

@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,17 +280,17 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="active">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="active">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Webhooks</h1>
+            <h1 id="webhooks" tabindex="-1">Webhooks</h1>
 <p>Webhooks allow you to receive real-time notifications when events happen in Badger. This enables you to react immediately to badge unlocks, user progress, and other important events in your application.</p>
-<h2>What are Webhooks?</h2>
+<h2 id="what-are-webhooks%3F" tabindex="-1">What are Webhooks?</h2>
 <p>Webhooks are HTTP callbacks that Badger sends to your server when specific events occur. Instead of polling the API to check for updates, webhooks push data to your application in real-time.</p>
-<h2>Supported Events</h2>
+<h2 id="supported-events" tabindex="-1">Supported Events</h2>
 <p>Badger sends webhooks for the following events:</p>
 <ul>
 <li><strong><code>even.created</code></strong> - When an event is successfully sent</li>
@@ -280,25 +302,25 @@
 <li><strong><code>user.badge.streak.updated</code></strong> - When a user’s streak count increases</li>
 <li><strong><code>user.badge.streak.ended</code></strong> - When a user’s streak breaks</li>
 </ul>
-<h2>Setting Up Webhooks</h2>
-<h3>1. Configure Webhook URL</h3>
+<h2 id="setting-up-webhooks" tabindex="-1">Setting Up Webhooks</h2>
+<h3 id="1.-configure-webhook-url" tabindex="-1">1. Configure Webhook URL</h3>
 <ol>
 <li>Go to your app dashboard</li>
 <li>Navigate to <strong>Settings</strong> → <strong>Webhooks</strong></li>
 <li>Enter your webhook URL (e.g., <code>https://yourdomain.com/webhooks/badger</code>)</li>
 <li>Save the configuration</li>
 </ol>
-<h3>2. Enable Event Types</h3>
+<h3 id="2.-enable-event-types" tabindex="-1">2. Enable Event Types</h3>
 <p>Choose which events you want to receive:</p>
 <ul>
 <li><strong>Badge Events</strong> - Unlocks and progress updates</li>
 <li><strong>Reward Events</strong> - Points and custom rewards</li>
 <li><strong>Streak Events</strong> - Streak starts, updates, and breaks</li>
 </ul>
-<h3>3. Test Your Webhook</h3>
+<h3 id="3.-test-your-webhook" tabindex="-1">3. Test Your Webhook</h3>
 <p>Use the test button in the dashboard to send a sample webhook and verify your endpoint is working correctly.</p>
-<h2>Webhook Payloads</h2>
-<h3>Badge Unlocked</h3>
+<h2 id="webhook-payloads" tabindex="-1">Webhook Payloads</h2>
+<h3 id="badge-unlocked" tabindex="-1">Badge Unlocked</h3>
 <pre><code class="language-json">{
   &quot;event&quot;: &quot;user.badge.unlocked&quot;,
   &quot;userId&quot;: &quot;user123&quot;,
@@ -311,7 +333,7 @@
   &quot;timestamp&quot;: &quot;2024-01-15T10:30:00Z&quot;
 }
 </code></pre>
-<h3>Reward Unlocked</h3>
+<h3 id="reward-unlocked" tabindex="-1">Reward Unlocked</h3>
 <pre><code class="language-json">{
   &quot;event&quot;: &quot;user.reward.unlocked&quot;,
   &quot;userId&quot;: &quot;user123&quot;,
@@ -324,10 +346,10 @@
   &quot;timestamp&quot;: &quot;2024-01-15T10:30:00Z&quot;
 }
 </code></pre>
-<h2>Webhook Verification</h2>
-<h3>Security</h3>
+<h2 id="webhook-verification" tabindex="-1">Webhook Verification</h2>
+<h3 id="security" tabindex="-1">Security</h3>
 <p>Badger signs webhooks with a secret to ensure they come from us. Always verify webhook signatures to prevent spoofing.</p>
-<h3>Verify Signatures</h3>
+<h3 id="verify-signatures" tabindex="-1">Verify Signatures</h3>
 <pre><code class="language-typescript">app.post(&quot;/webhooks/badger&quot;, (req, res) =&gt; {
   const isValid = await badger.verifySignature(
     req.body,
@@ -346,7 +368,7 @@
   res.status(200).send(&quot;OK&quot;);
 });
 </code></pre>
-<h3>Python Example</h3>
+<h3 id="python-example" tabindex="-1">Python Example</h3>
 <pre><code class="language-python">import hmac
 import hashlib
 import json
@@ -383,12 +405,12 @@ def handle_webhook(data):
     elif event == 'user_reward_unlocked':
         print(f&quot;User {user_id} earned reward: {data['reward']}&quot;)
 </code></pre>
-<h2>Related Documentation</h2>
+<h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
-<li><strong><a href="./events.md">Events</a></strong> - Learn about sending events to Badger</li>
-<li><strong><a href="./badges.md">Badges</a></strong> - Understand badge creation and management</li>
-<li><strong><a href="./rewards.md">Rewards</a></strong> - See how rewards work with webhooks</li>
-<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="./events">Events</a></strong> - Learn about sending events to Badger</li>
+<li><strong><a href="./badges">Badges</a></strong> - Understand badge creation and management</li>
+<li><strong><a href="./rewards">Rewards</a></strong> - See how rewards work with webhooks</li>
+<li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 
         </div>

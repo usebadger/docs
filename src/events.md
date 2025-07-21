@@ -90,7 +90,7 @@ async function completeTask(userId: string, taskId: string) {
 
 ## Related Documentation
 
-- **[Badges](./badges.md)** - Learn about badge creation and management
-- **[Conditions](./conditions.md)** - Understand how events trigger badge conditions
-- **[Users](./users.md)** - See how events create and track users
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Badges](./badges)** - Learn about badge creation and management
+- **[Conditions](./conditions)** - Understand how events trigger badge conditions
+- **[Users](./users)** - See how events create and track users
+- **[API Reference](./api-reference)** - Complete API documentation

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing - Badger Documentation</title>
+    <title>Authentication - Badger Documentation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
         
@@ -280,97 +280,137 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="active">Billing</a><a href="api-reference" class="">API Reference</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="active">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1 id="billing" tabindex="-1">Billing</h1>
-<p>Badger offers a generous free tier to get you started, with paid plans available for higher usage limits.</p>
-<h2 id="free-tier" tabindex="-1">Free Tier</h2>
-<p>The free tier includes:</p>
+            <h1 id="authentication" tabindex="-1">Authentication</h1>
+<p>This guide explains how to authenticate your requests to the Badger API using your App ID and App Secret.</p>
+<h2 id="overview" tabindex="-1">Overview</h2>
+<p>Badger uses a simple API key authentication system. You’ll need two credentials to make authenticated requests:</p>
 <ul>
-<li>100 Monthly Active Users</li>
-<li>2.5k Monthly Events</li>
-<li>25 Badges</li>
-<li>1 App</li>
+<li><strong>App ID</strong>: A public identifier for your application</li>
+<li><strong>App Secret</strong>: A private key used to authenticate your requests</li>
 </ul>
-<h2 id="usage-limits" tabindex="-1">Usage Limits</h2>
-<h3 id="events" tabindex="-1">Events</h3>
-<p>MAU and Events are counted each time you call <code>badger.events.sendEvent()</code> across all apps.</p>
-<h3 id="badges" tabindex="-1">Badges</h3>
-<p>Badge limits apply to the total number of badges you can create per app.</p>
-<h3 id="monthly-reset" tabindex="-1">Monthly Reset</h3>
-<p>All usage limits reset on the <strong>1st of each calendar month</strong>.</p>
-<h2 id="usage-monitoring" tabindex="-1">Usage Monitoring</h2>
-<h3 id="dashboard" tabindex="-1">Dashboard</h3>
-<p>Monitor your usage in real-time through the dashboard.</p>
-<h3 id="notifications" tabindex="-1">Notifications</h3>
-<p>You’ll receive notifications when you approach or exceed your limits. There is a small buffer if you go over your limit, after which events will stop registering and badges will no longer unlock.</p>
-<h2 id="paid-plans" tabindex="-1">Paid Plans</h2>
-<p>When you need higher limits, upgrade to a paid plan for:</p>
-<ul>
-<li><strong>Higher event limits</strong> - Handle more user activity</li>
-<li><strong>Higher MAU</strong> - Scale to more users</li>
-<li><strong>More badges</strong> - Create as many badges as you want</li>
-</ul>
-<h3 id="upgrading" tabindex="-1">Upgrading</h3>
-<p>To upgrade your plan:</p>
+<p><strong>Note</strong>: Most read-only requests (like getting badge information or user badges) only require your App ID and can be made from client-side code. The App Secret is only needed for write operations (sending events, creating badges, etc.) and should be kept secure on your server.</p>
+<h2 id="getting-your-credentials" tabindex="-1">Getting Your Credentials</h2>
 <ol>
-<li>Go to your app dashboard</li>
-<li>Navigate to <strong>Settings</strong> → <strong>Billing</strong></li>
-<li>Choose the plan that fits your needs</li>
+<li>Log into your Badger dashboard at <a href="https://app.usebadger.dev">app.usebadger.dev</a></li>
+<li>Navigate to <strong>Settings</strong> → <strong>App Settings</strong></li>
+<li>Copy your <code>App ID</code> and generate an <code>App Secret</code> if you haven’t already</li>
 </ol>
-<h3 id="downgrading" tabindex="-1">Downgrading</h3>
-<p>You can downgrade your plan at any time:</p>
-<ol>
-<li>Go to <strong>Settings</strong> → <strong>Billing</strong></li>
-<li>Click “Change Plan”</li>
-<li>Select a lower tier plan</li>
-</ol>
-<p><strong>Note</strong>: When downgrading, ensure your current usage is within the new plan’s limits.</p>
-<h2 id="usage-optimization" tabindex="-1">Usage Optimization</h2>
-<h3 id="reduce-event-volume" tabindex="-1">Reduce Event Volume</h3>
+<p><strong>Security Note</strong>: Keep your App Secret secure and never expose it in client-side code or public repositories.</p>
+<h2 id="using-the-sdk-(recommended)" tabindex="-1">Using the SDK (Recommended)</h2>
+<p>The easiest way to authenticate is using the official Badger SDK:</p>
+<h3 id="server-side-(with-app-secret)" tabindex="-1">Server-side (with App Secret)</h3>
+<p>For write operations and server-side code:</p>
+<pre><code class="language-typescript">import { BadgerClient } from &quot;@usebadger/sdk&quot;;
+
+const badger = new BadgerClient({
+  appId: &quot;your-app-id&quot;,
+  appSecret: &quot;your-app-secret&quot;,
+});
+
+// All requests are automatically authenticated
+await badger.events.sendEvent({
+  userId: &quot;user123&quot;,
+  event: &quot;login&quot;,
+});
+</code></pre>
+<h3 id="client-side-(app-id-only)" tabindex="-1">Client-side (App ID only)</h3>
+<p>For read-only operations that can be safely made from the browser:</p>
+<pre><code class="language-typescript">import { BadgerClient } from &quot;@usebadger/sdk&quot;;
+
+const badger = new BadgerClient({
+  appId: &quot;your-app-id&quot;,
+  // No appSecret needed for read operations
+});
+
+// Safe to use in client-side code
+const userBadges = await badger.users.getUserBadges(&quot;user123&quot;);
+</code></pre>
+<h2 id="direct-api-authentication" tabindex="-1">Direct API Authentication</h2>
+<p>If you’re making direct HTTP requests to the Badger API, you need to include your secret in the request headers:</p>
+<h3 id="headers-required" tabindex="-1">Headers Required</h3>
+<pre><code>Authorization: Bearer your-app-secret
+</code></pre>
+<h3 id="example-request" tabindex="-1">Example Request</h3>
+<pre><code class="language-bash">curl -X POST https://api.usebadger.dev/v1/your-appp-id/events \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer your-app-secret&quot; \
+  -d '{
+    &quot;userId&quot;: &quot;user123&quot;,
+    &quot;event&quot;: &quot;login&quot;
+  }'
+</code></pre>
+<h3 id="javascript-example" tabindex="-1">JavaScript Example</h3>
+<pre><code class="language-javascript">const response = await fetch(
+  &quot;https://api.usebadger.dev/v1/your-app-id/events&quot;,
+  {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      Authorization: &quot;Bearer your-app-secret&quot;,
+    },
+    body: JSON.stringify({
+      userId: &quot;user123&quot;,
+      event: &quot;login&quot;,
+    }),
+  }
+);
+</code></pre>
+<h3 id="python-example" tabindex="-1">Python Example</h3>
+<pre><code class="language-python">import requests
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your-app-secret'
+}
+
+data = {
+    'userId': 'user123',
+    'event': 'login'
+}
+
+response = requests.post(
+    'https://api.usebadger.dev/v1/your-app-id/events',
+    headers=headers,
+    json=data
+)
+</code></pre>
+<h2 id="environment-variables" tabindex="-1">Environment Variables</h2>
+<p>For security, store your credentials as environment variables:</p>
+<pre><code class="language-bash"># .env file
+BADGER_APP_ID=your-app-id
+BADGER_APP_SECRET=your-app-secret
+</code></pre>
+<p>Then use them in your code:</p>
+<pre><code class="language-typescript">import { BadgerClient } from &quot;@usebadger/sdk&quot;;
+
+const badger = new BadgerClient({
+  appId: process.env.BADGER_APP_ID!,
+  appSecret: process.env.BADGER_APP_SECRET!,
+});
+</code></pre>
+<h2 id="multiple-apps" tabindex="-1">Multiple Apps</h2>
+<p>If you have multiple apps, each will have its own App ID and App Secret. Use the appropriate credentials for each app:</p>
+<pre><code class="language-typescript">// Production app
+const productionBadger = new BadgerClient({
+  appId: process.env.PROD_APP_ID,
+  appSecret: process.env.PROD_APP_SECRET,
+});
+
+// Development app
+const developmentBadger = new BadgerClient({
+  appId: process.env.DEV_APP_ID,
+  appSecret: process.env.DEV_APP_SECRET,
+});
+</code></pre>
+<h2 id="related-topics" tabindex="-1">Related Topics</h2>
 <ul>
-<li><strong>Batch events</strong> for high-frequency actions</li>
-<li><strong>Filter events</strong> - only send events you need for badges</li>
-<li><strong>Use sampling</strong> for analytics-only events</li>
-<li><strong>Clean up old events</strong> - remove test events</li>
-</ul>
-<h3 id="efficient-badge-design" tabindex="-1">Efficient Badge Design</h3>
-<ul>
-<li><strong>Combine conditions</strong> - use fewer badges with multiple conditions</li>
-<li><strong>Use badge hierarchies</strong> - create parent/child relationships</li>
-<li><strong>Optimize conditions</strong> - use efficient condition types</li>
-</ul>
-<h3 id="monitor-usage" tabindex="-1">Monitor Usage</h3>
-<ul>
-<li><strong>Track usage regularly</strong> - check your dashboard weekly</li>
-<li><strong>Set up alerts</strong> - configure notifications for usage milestones</li>
-<li><strong>Analyze patterns</strong> - identify high-volume event sources</li>
-</ul>
-<h2 id="billing-faq" tabindex="-1">Billing FAQ</h2>
-<h3 id="what-happens-when-i-reach-my-limit%3F" tabindex="-1">What happens when I reach my limit?</h3>
-<p>When you reach your event limit:</p>
-<ul>
-<li>New events will be rejected</li>
-<li>You’ll receive notifications</li>
-<li>Badge progress tracking will stop</li>
-<li>Upgrade to continue normal operation</li>
-</ul>
-<h3 id="can-i-carry-over-unused-events%3F" tabindex="-1">Can I carry over unused events?</h3>
-<p>No, unused events don’t carry over to the next month. Each month starts fresh with your full allocation.</p>
-<h3 id="how-are-events-counted%3F" tabindex="-1">How are events counted?</h3>
-<p>Events are counted in real-time as they’re sent to Badger. Each call to <code>badger.events.sendEvent()</code> counts as one event.</p>
-<h3 id="what-if-i-need-more-than-the-highest-paid-plan%3F" tabindex="-1">What if I need more than the highest paid plan?</h3>
-<p>Contact us at <a href="mailto:hello@usebadger.dev">hello@usebadger.dev</a> for custom enterprise plans with higher limits.</p>
-<h3 id="can-i-get-a-refund%3F" tabindex="-1">Can I get a refund?</h3>
-<p>We offer prorated refunds for unused portions of paid plans. Contact support for assistance.</p>
-<h2 id="support" tabindex="-1">Support</h2>
-<p>Need help with billing or usage?</p>
-<ul>
-<li><strong>Email</strong>: <a href="mailto:hello@usebadger.dev">hello@usebadger.dev</a></li>
+<li><strong><a href="../webhooks#webhook-verification">Webhook Verification</a></strong> - Learn how to verify webhook signatures for secure webhook handling</li>
 </ul>
 
         </div>

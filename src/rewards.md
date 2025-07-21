@@ -83,7 +83,7 @@ Configure webhooks to get real-time notifications when users earn rewards:
 
 ## Related Documentation
 
-- **[Badges](./badges.md)** - Learn about badge creation and management
-- **[Events](./events.md)** - See how to track user actions
-- **[Webhooks](./webhooks.md)** - Complete webhook documentation
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Badges](./badges)** - Learn about badge creation and management
+- **[Events](./events)** - See how to track user actions
+- **[Webhooks](./webhooks)** - Complete webhook documentation
+- **[API Reference](./api-reference)** - Complete API documentation

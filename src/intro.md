@@ -121,9 +121,7 @@ Badger is perfect for:
 
 Ready to get started? Check out these resources:
 
-- [Getting Started Guide](./getting-started.md) - Set up your first badge
-- [Badges Documentation](./badges.md) - Learn about badge creation and management
-- [Events Guide](./events.md) - Understand how to track user actions
-- [API Reference](./api-reference.md) - Complete API documentation
-
-Have questions? Check out our [FAQ](./faq.md) or reach out to our support team.
+- [Getting Started Guide](./getting-started) - Set up your first badge
+- [Badges Documentation](./badges) - Learn about badge creation and management
+- [Events Guide](./events) - Understand how to track user actions
+- [API Reference](./api-reference) - Complete API documentation

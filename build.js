@@ -8,33 +8,44 @@ const md = new MarkdownIt({
   typographer: true,
 });
 
+// Add anchor plugin for headers
+md.use(require("markdown-it-anchor"), {
+  permalinks: true,
+});
+
 // Navigation structure
 const pages = [
-  { title: "Introduction", file: "intro.md", url: "index.html" },
+  { title: "Introduction", file: "intro.md", url: "index" },
   {
     title: "Getting Started",
     file: "getting-started.md",
-    url: "getting-started.html",
+    url: "getting-started",
   },
-  { title: "Badges", file: "badges.md", url: "badges.html" },
-  { title: "Conditions", file: "conditions.md", url: "conditions.html" },
-  { title: "Rewards", file: "rewards.md", url: "rewards.html" },
-  { title: "Users", file: "users.md", url: "users.html" },
-  { title: "Events", file: "events.md", url: "events.html" },
-  { title: "Webhooks", file: "webhooks.md", url: "webhooks.html" },
-  { title: "Billing", file: "billing.md", url: "billing.html" },
+  {
+    title: "Authentication",
+    file: "authentication.md",
+    url: "authentication",
+  },
+  { title: "Badges", file: "badges.md", url: "badges" },
+  { title: "Conditions", file: "conditions.md", url: "conditions" },
+  { title: "Rewards", file: "rewards.md", url: "rewards" },
+  { title: "Users", file: "users.md", url: "users" },
+  { title: "Events", file: "events.md", url: "events" },
+  { title: "Webhooks", file: "webhooks.md", url: "webhooks" },
+  { title: "Billing", file: "billing.md", url: "billing" },
   {
     title: "API Reference",
     file: "api-reference.md",
-    url: "api-reference.html",
+    url: "api-reference",
   },
-  { title: "Terms", file: "terms.md", url: "terms.html" },
-  { title: "Privacy", file: "privacy.md", url: "privacy.html" },
+  { title: "Terms", file: "terms.md", url: "terms", hidden: true },
+  { title: "Privacy", file: "privacy.md", url: "privacy", hidden: true },
 ];
 
 // HTML template
 function generateHTML(content, title, currentPage) {
   const navigation = pages
+    .filter((page) => !page.hidden)
     .map((page) => {
       const active = page.url === currentPage ? "active" : "";
       return `<a href="${page.url}" class="${active}">${page.title}</a>`;
@@ -238,6 +249,28 @@ function generateHTML(content, title, currentPage) {
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -345,7 +378,7 @@ async function build() {
     // Build each page
     for (const page of pages) {
       const markdownPath = path.join("src", page.file);
-      const htmlPath = path.join("docs", page.url);
+      const htmlPath = path.join("docs", page.url + ".html");
 
       if (await fs.pathExists(markdownPath)) {
         const markdown = await fs.readFile(markdownPath, "utf8");
@@ -353,7 +386,7 @@ async function build() {
         const fullHTML = generateHTML(html, page.title, page.url);
 
         await fs.writeFile(htmlPath, fullHTML);
-        console.log(`Built: ${page.url}`);
+        console.log(`Built: ${page.url}.html`);
       } else {
         console.warn(`Warning: ${markdownPath} not found`);
       }

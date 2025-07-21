@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,33 +280,33 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="active">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="active">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Badges</h1>
+            <h1 id="badges" tabindex="-1">Badges</h1>
 <p>Badges are the core building blocks of gamification in Badger. They represent achievements that users can unlock by completing specific actions or reaching milestones in your app.</p>
-<h2>Badge Lifecycle</h2>
-<h3>1. <strong>Creation</strong></h3>
+<h2 id="badge-lifecycle" tabindex="-1">Badge Lifecycle</h2>
+<h3 id="1.-creation" tabindex="-1">1. <strong>Creation</strong></h3>
 <p>Badges start as inactive templates. You define their appearance, conditions, and rewards.</p>
-<h3>2. <strong>Activation</strong></h3>
+<h3 id="2.-activation" tabindex="-1">2. <strong>Activation</strong></h3>
 <p>Once activated, badges become live and can be unlocked by users.</p>
-<h3>3. <strong>Progress Tracking</strong></h3>
+<h3 id="3.-progress-tracking" tabindex="-1">3. <strong>Progress Tracking</strong></h3>
 <p>As users perform actions, Badger tracks their progress toward unlocking badges.</p>
-<h3>4. <strong>Unlocking</strong></h3>
+<h3 id="4.-unlocking" tabindex="-1">4. <strong>Unlocking</strong></h3>
 <p>When all conditions are met, the badge is automatically awarded to the user. You can configure webhooks to react to badge unlocks in real time.</p>
-<h3>5. <strong>Rewards</strong></h3>
+<h3 id="5.-rewards" tabindex="-1">5. <strong>Rewards</strong></h3>
 <p>If configured, rewards are automatically given when the badge is unlocked.</p>
-<h2>Badge Status</h2>
+<h2 id="badge-status" tabindex="-1">Badge Status</h2>
 <p>Each user’s relationship with a badge has one of three statuses:</p>
 <ul>
 <li><strong>NOT_STARTED</strong> - The user hasn’t made any progress toward this badge</li>
 <li><strong>INCOMPLETE</strong> - The user has started working toward the badge but hasn’t completed it</li>
 <li><strong>COMPLETE</strong> - The user has successfully unlocked the badge</li>
 </ul>
-<h2>Badge Visibility</h2>
+<h2 id="badge-visibility" tabindex="-1">Badge Visibility</h2>
 <p>You can control when and how badges appear to users:</p>
 <ul>
 <li><strong>VISIBLE</strong> - Users can see the badge immediately, even before they start working on it</li>
@@ -292,8 +314,8 @@
 <li><strong>ON_UNLOCK</strong> - The badge is only revealed when the user unlocks it</li>
 <li><strong>HIDDEN</strong> - The badge is never shown to users (useful for secret achievements)</li>
 </ul>
-<h2>Creating Badges</h2>
-<h3>Using the Dashboard</h3>
+<h2 id="creating-badges" tabindex="-1">Creating Badges</h2>
+<h3 id="using-the-dashboard" tabindex="-1">Using the Dashboard</h3>
 <ol>
 <li>Go to your app dashboard</li>
 <li>Click “Create Badge”</li>
@@ -303,7 +325,7 @@
 <li>Add rewards (optional)</li>
 <li>Click “Activate Badge”</li>
 </ol>
-<h3>Using the API</h3>
+<h3 id="using-the-api" tabindex="-1">Using the API</h3>
 <pre><code class="language-typescript">// Create a badge via direct API call
 const response = await fetch(&quot;https://api.usebadger.dev/badges&quot;, {
   method: &quot;POST&quot;,
@@ -336,7 +358,7 @@ const response = await fetch(&quot;https://api.usebadger.dev/badges&quot;, {
 
 const badge = await response.json();
 </code></pre>
-<h2>Badge Categories</h2>
+<h2 id="badge-categories" tabindex="-1">Badge Categories</h2>
 <p>Organize your badges into custom categories to help users understand different types of achievements, for example:</p>
 <ul>
 <li><strong>Onboarding</strong> - Welcome and first-time user badges</li>
@@ -345,10 +367,10 @@ const badge = await response.json();
 <li><strong>Social</strong> - Community and sharing badges</li>
 <li><strong>Special</strong> - Limited-time or exclusive badges</li>
 </ul>
-<h2>Badge Hierarchies</h2>
+<h2 id="badge-hierarchies" tabindex="-1">Badge Hierarchies</h2>
 <p>Create badge trees and progression systems by linking badges together. Just drag and drop a badge onto a parent to create a relationship. Child badges will only be visibile to a user once the parent badge is unlocked.</p>
-<h2>Managing Badges</h2>
-<h3>List All Badges</h3>
+<h2 id="managing-badges" tabindex="-1">Managing Badges</h2>
+<h3 id="list-all-badges" tabindex="-1">List All Badges</h3>
 <pre><code class="language-typescript">// Get all visible badges
 const { badges } = await badger.badges.getBadges();
 
@@ -363,13 +385,13 @@ const { badges: userBadges } = await badger.badges.getBadges({
   userId: &quot;user123&quot;,
 });
 </code></pre>
-<h2>Related Documentation</h2>
+<h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
-<li><strong><a href="./conditions.md">Conditions</a></strong> - Learn about different types of badge conditions</li>
-<li><strong><a href="./rewards.md">Rewards</a></strong> - Understand how to add rewards to your badges</li>
-<li><strong><a href="./events.md">Events</a></strong> - See how to track user actions effectively</li>
-<li><strong><a href="./users.md">Users</a></strong> - Manage user badges and progress</li>
-<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="./conditions">Conditions</a></strong> - Learn about different types of badge conditions</li>
+<li><strong><a href="./rewards">Rewards</a></strong> - Understand how to add rewards to your badges</li>
+<li><strong><a href="./events">Events</a></strong> - See how to track user actions effectively</li>
+<li><strong><a href="./users">Users</a></strong> - Manage user badges and progress</li>
+<li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 
         </div>

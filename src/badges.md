@@ -125,8 +125,8 @@ const { badges: userBadges } = await badger.badges.getBadges({
 
 ## Related Documentation
 
-- **[Conditions](./conditions.md)** - Learn about different types of badge conditions
-- **[Rewards](./rewards.md)** - Understand how to add rewards to your badges
-- **[Events](./events.md)** - See how to track user actions effectively
-- **[Users](./users.md)** - Manage user badges and progress
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Conditions](./conditions)** - Learn about different types of badge conditions
+- **[Rewards](./rewards)** - Understand how to add rewards to your badges
+- **[Events](./events)** - See how to track user actions effectively
+- **[Users](./users)** - Manage user badges and progress
+- **[API Reference](./api-reference)** - Complete API documentation

@@ -269,7 +269,7 @@ conditions.forEach((condition) => {
 
 ## Related Documentation
 
-- **[Badges](./badges.md)** - Learn about badge creation and management
-- **[Events](./events.md)** - Understand how to track user actions
-- **[Rewards](./rewards.md)** - Add rewards to your badges
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Badges](./badges)** - Learn about badge creation and management
+- **[Events](./events)** - Understand how to track user actions
+- **[Rewards](./rewards)** - Add rewards to your badges
+- **[API Reference](./api-reference)** - Complete API documentation

@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,15 +280,15 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="active">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="active">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Welcome to Badger</h1>
+            <h1 id="welcome-to-badger" tabindex="-1">Welcome to Badger</h1>
 <p><strong>Badger</strong> is the easiest way to add achievements and gamification to your app. Built for developers, it provides a lightweight API that lets you create badges, track user progress, and reward your users with minimal setup.</p>
-<h2>What is Badger?</h2>
+<h2 id="what-is-badger%3F" tabindex="-1">What is Badger?</h2>
 <p>Badger is a developer-first gamification platform that helps you:</p>
 <ul>
 <li><strong>Create engaging badges</strong> with flexible conditions and rewards</li>
@@ -275,8 +297,8 @@
 <li><strong>Integrate seamlessly</strong> into any app with our simple REST API</li>
 </ul>
 <p>Whether you’re building a productivity app, a learning platform, or a social network, Badger helps you keep users engaged and motivated through gamification.</p>
-<h2>Key Features</h2>
-<h3>🏆 <strong>Flexible Badge System</strong></h3>
+<h2 id="key-features" tabindex="-1">Key Features</h2>
+<h3 id="%F0%9F%8F%86-flexible-badge-system" tabindex="-1">🏆 <strong>Flexible Badge System</strong></h3>
 <p>Create badges with various conditions:</p>
 <ul>
 <li><strong>Event-based</strong>: Award badges when users perform specific actions</li>
@@ -285,31 +307,31 @@
 <li><strong>Sum/Average</strong>: Track metrics over time</li>
 <li><strong>Badge dependencies</strong>: Create badge trees and progression systems</li>
 </ul>
-<h3>📊 <strong>Smart Progress Tracking</strong></h3>
+<h3 id="%F0%9F%93%8A-smart-progress-tracking" tabindex="-1">📊 <strong>Smart Progress Tracking</strong></h3>
 <ul>
 <li>Real-time progress updates</li>
 <li>Multiple condition types per badge</li>
 <li>Analytics and insights</li>
 </ul>
-<h3>🎁 <strong>Customizable Rewards</strong></h3>
+<h3 id="%F0%9F%8E%81-customizable-rewards" tabindex="-1">🎁 <strong>Customizable Rewards</strong></h3>
 <ul>
 <li>Points system</li>
 <li>Custom reward types</li>
 <li>Webhook integrations</li>
 </ul>
-<h3>⚡ <strong>Developer-Friendly</strong></h3>
+<h3 id="%E2%9A%A1-developer-friendly" tabindex="-1">⚡ <strong>Developer-Friendly</strong></h3>
 <ul>
 <li>Simple REST API</li>
 <li>SDK for multiple languages</li>
 <li>Webhook support for real-time updates</li>
 <li>Generous free tier</li>
 </ul>
-<h2>How It Works</h2>
-<h3>1. <strong>Create Your App</strong></h3>
+<h2 id="how-it-works" tabindex="-1">How It Works</h2>
+<h3 id="1.-create-your-app" tabindex="-1">1. <strong>Create Your App</strong></h3>
 <p>Sign up and create your first app in the <a href="https://app.usebadger.dev">Badger dashboard</a>. You’ll get an <code>appId</code> and <code>appSecret</code> for API access.</p>
-<h3>2. <strong>Create Badges</strong></h3>
+<h3 id="2.-create-badges" tabindex="-1">2. <strong>Create Badges</strong></h3>
 <p>Use the dashboard to create badges with custom conditions, images, and rewards. Define what users need to do to unlock each badge.</p>
-<h3>3. <strong>Track Events</strong></h3>
+<h3 id="3.-track-events" tabindex="-1">3. <strong>Track Events</strong></h3>
 <p>Send events from your app when users perform actions:</p>
 <pre><code class="language-typescript">await badger.events.sendEvent({
   userId: &quot;user123&quot;,
@@ -317,15 +339,15 @@
   metadata: { taskType: &quot;coding&quot;, difficulty: &quot;hard&quot; },
 });
 </code></pre>
-<h3>4. <strong>Award Badges</strong></h3>
+<h3 id="4.-award-badges" tabindex="-1">4. <strong>Award Badges</strong></h3>
 <p>Badges are automatically awarded when conditions are met.</p>
-<h3>5. <strong>Engage Users</strong></h3>
+<h3 id="5.-engage-users" tabindex="-1">5. <strong>Engage Users</strong></h3>
 <p>Display badges, progress, and rewards in your app to keep users motivated and engaged.</p>
-<h2>Quick Start</h2>
-<h3>Installation</h3>
+<h2 id="quick-start" tabindex="-1">Quick Start</h2>
+<h3 id="installation" tabindex="-1">Installation</h3>
 <pre><code class="language-bash">npm install @usebadger/sdk
 </code></pre>
-<h3>Basic Setup</h3>
+<h3 id="basic-setup" tabindex="-1">Basic Setup</h3>
 <pre><code class="language-typescript">import { BadgerClient } from &quot;@usebadger/sdk&quot;;
 
 const badger = new BadgerClient({
@@ -346,7 +368,7 @@ const { badges } = await badger.badges.getBadges();
 // Get badges unlocked by a user
 const { badges: userBadges } = await badger.users.getUserBadges(&quot;user123&quot;);
 </code></pre>
-<h2>Use Cases</h2>
+<h2 id="use-cases" tabindex="-1">Use Cases</h2>
 <p>Badger is perfect for:</p>
 <ul>
 <li><strong>Productivity Apps</strong>: Reward task completion, streaks, and milestones</li>
@@ -356,15 +378,14 @@ const { badges: userBadges } = await badger.users.getUserBadges(&quot;user123&qu
 <li><strong>E-commerce</strong>: Reward purchases, reviews, and loyalty</li>
 <li><strong>Gaming</strong>: Create achievement systems for any type of game</li>
 </ul>
-<h2>Next Steps</h2>
+<h2 id="next-steps" tabindex="-1">Next Steps</h2>
 <p>Ready to get started? Check out these resources:</p>
 <ul>
-<li><a href="./getting-started.md">Getting Started Guide</a> - Set up your first badge</li>
-<li><a href="./badges.md">Badges Documentation</a> - Learn about badge creation and management</li>
-<li><a href="./events.md">Events Guide</a> - Understand how to track user actions</li>
-<li><a href="./api-reference.md">API Reference</a> - Complete API documentation</li>
+<li><a href="./getting-started">Getting Started Guide</a> - Set up your first badge</li>
+<li><a href="./badges">Badges Documentation</a> - Learn about badge creation and management</li>
+<li><a href="./events">Events Guide</a> - Understand how to track user actions</li>
+<li><a href="./api-reference">API Reference</a> - Complete API documentation</li>
 </ul>
-<p>Have questions? Check out our <a href="./faq.md">FAQ</a> or reach out to our support team.</p>
 
         </div>
     </main>

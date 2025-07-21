@@ -4,7 +4,7 @@ This guide will walk you through setting up Badger and creating your first badge
 
 ## Step 1: Create Your Account
 
-1. Visit [app.usebadger.dev](https://usebadger.dev)
+1. Visit [app.usebadger.dev](https://app.usebadger.dev)
 2. Click "Get Started" to create your account
 
 ## Step 2: Get Your App Credentials
@@ -144,7 +144,7 @@ function UserBadges({ userId }) {
 
 Congratulations! You've successfully set up Badger and created your first badge. Here's what you can explore next:
 
-- **[Badges Documentation](./badges.md)** - Learn about different badge types and conditions
-- **[Events Guide](./events.md)** - Understand how to track user actions effectively
-- **[Webhooks](./webhooks.md)** - Get real-time notifications when badges are unlocked
-- **[API Reference](./api-reference.md)** - Explore the complete API
+- **[Badges Documentation](./badges)** - Learn about different badge types and conditions
+- **[Events Guide](./events)** - Understand how to track user actions effectively
+- **[Webhooks](./webhooks)** - Get real-time notifications when badges are unlocked
+- **[API Reference](./api-reference)** - Explore the complete API

@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,17 +280,17 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="active">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="active">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Conditions</h1>
+            <h1 id="conditions" tabindex="-1">Conditions</h1>
 <p>Conditions define what users need to do to unlock a badge. Each badge can have multiple conditions, and all conditions must be met for the badge to be awarded.</p>
-<h2>Condition Types</h2>
+<h2 id="condition-types" tabindex="-1">Condition Types</h2>
 <p>Badger supports several types of conditions to create diverse and engaging achievements:</p>
-<h3>Event Conditions</h3>
+<h3 id="event-conditions" tabindex="-1">Event Conditions</h3>
 <p>Award badges when users perform specific actions.</p>
 <pre><code class="language-typescript">{
   type: &quot;EVENT&quot;,
@@ -281,7 +303,7 @@
 <li>First-time actions (first login, first purchase)</li>
 <li>One-time achievements (complete profile, verify email)</li>
 </ul>
-<h3>Count Conditions</h3>
+<h3 id="count-conditions" tabindex="-1">Count Conditions</h3>
 <p>Track how many times a user performs an action.</p>
 <pre><code class="language-typescript">{
   type: &quot;COUNT&quot;,
@@ -295,7 +317,7 @@
 <li>Usage tracking (visit app 100 times)</li>
 <li>Milestone events (100th task, 50th post)</li>
 </ul>
-<h3>Sum Conditions</h3>
+<h3 id="sum-conditions" tabindex="-1">Sum Conditions</h3>
 <p>Track the total value of a specific field across multiple events.</p>
 <pre><code class="language-typescript">{
   type: &quot;SUM&quot;,
@@ -310,7 +332,7 @@
 <li>Spending tracking (spend $500 total)</li>
 <li>Time tracking (log 24 hours of activity)</li>
 </ul>
-<h3>Average Conditions</h3>
+<h3 id="average-conditions" tabindex="-1">Average Conditions</h3>
 <p>Track the average value of a field across events.</p>
 <pre><code class="language-typescript">{
   type: &quot;AVERAGE&quot;,
@@ -325,7 +347,7 @@
 <li>Quality tracking (average 4-star ratings)</li>
 <li>Consistency goals (average 8 hours of sleep)</li>
 </ul>
-<h3>Streak Conditions</h3>
+<h3 id="streak-conditions" tabindex="-1">Streak Conditions</h3>
 <p>Reward consistent behavior over time.</p>
 <pre><code class="language-typescript">{
   type: &quot;STREAK&quot;,
@@ -340,7 +362,7 @@
 <li>Weekly consistency (4-week workout streak)</li>
 <li>Monthly goals (3-month reading streak)</li>
 </ul>
-<h3>Badge Conditions</h3>
+<h3 id="badge-conditions" tabindex="-1">Badge Conditions</h3>
 <p>Create dependencies between badges.</p>
 <pre><code class="language-typescript">{
   type: &quot;BADGE&quot;,
@@ -361,7 +383,7 @@
   badgeId: &quot;onboarding_complete&quot;
 }
 </code></pre>
-<h2>Time-Based Conditions</h2>
+<h2 id="time-based-conditions" tabindex="-1">Time-Based Conditions</h2>
 <p>Add time constraints to your conditions:</p>
 <pre><code class="language-typescript">{
   type: &quot;COUNT&quot;,
@@ -372,7 +394,7 @@
 }
 </code></pre>
 <p>This creates a monthly challenge that only counts tasks completed in January 2024.</p>
-<h2>Event Metadata</h2>
+<h2 id="event-metadata" tabindex="-1">Event Metadata</h2>
 <p>Conditions can reference specific metadata from events:</p>
 <pre><code class="language-typescript">// Event with metadata
 await badger.events.sendEvent({
@@ -395,7 +417,7 @@ await badger.events.sendEvent({
   }
 }
 </code></pre>
-<h2>Progress Tracking</h2>
+<h2 id="progress-tracking" tabindex="-1">Progress Tracking</h2>
 <p>Badger automatically tracks progress for each condition:</p>
 <pre><code class="language-typescript">// Get user's progress on a specific badge
 const userBadge = await badger.users.getUserBadge(&quot;user123&quot;, &quot;task_master&quot;);
@@ -411,8 +433,8 @@ conditions.forEach((condition) =&gt; {
   console.log(`Status: ${condition.status}`);
 });
 </code></pre>
-<h2>Common Patterns</h2>
-<h3>Onboarding Flow</h3>
+<h2 id="common-patterns" tabindex="-1">Common Patterns</h2>
+<h3 id="onboarding-flow" tabindex="-1">Onboarding Flow</h3>
 <pre><code class="language-typescript">// Welcome badge
 {
   type: &quot;EVENT&quot;,
@@ -427,7 +449,7 @@ conditions.forEach((condition) =&gt; {
   value: 1
 }
 </code></pre>
-<h3>Engagement Tracking</h3>
+<h3 id="engagement-tracking" tabindex="-1">Engagement Tracking</h3>
 <pre><code class="language-typescript">// Daily login streak
 {
   type: &quot;STREAK&quot;,
@@ -436,7 +458,7 @@ conditions.forEach((condition) =&gt; {
   streakInterval: &quot;DAY&quot;
 }
 </code></pre>
-<h3>Achievement Milestones</h3>
+<h3 id="achievement-milestones" tabindex="-1">Achievement Milestones</h3>
 <pre><code class="language-typescript">// Beginner (10 tasks)
 {
   type: &quot;COUNT&quot;,
@@ -458,7 +480,7 @@ conditions.forEach((condition) =&gt; {
   value: 1000
 }
 </code></pre>
-<h3>Quality Metrics</h3>
+<h3 id="quality-metrics" tabindex="-1">Quality Metrics</h3>
 <pre><code class="language-typescript">// High-quality work
 {
   type: &quot;AVERAGE&quot;,
@@ -478,12 +500,12 @@ conditions.forEach((condition) =&gt; {
   }
 }
 </code></pre>
-<h2>Related Documentation</h2>
+<h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
-<li><strong><a href="./badges.md">Badges</a></strong> - Learn about badge creation and management</li>
-<li><strong><a href="./events.md">Events</a></strong> - Understand how to track user actions</li>
-<li><strong><a href="./rewards.md">Rewards</a></strong> - Add rewards to your badges</li>
-<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="./badges">Badges</a></strong> - Learn about badge creation and management</li>
+<li><strong><a href="./events">Events</a></strong> - Understand how to track user actions</li>
+<li><strong><a href="./rewards">Rewards</a></strong> - Add rewards to your badges</li>
+<li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 
         </div>

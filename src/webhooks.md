@@ -144,7 +144,7 @@ def handle_webhook(data):
 
 ## Related Documentation
 
-- **[Events](./events.md)** - Learn about sending events to Badger
-- **[Badges](./badges.md)** - Understand badge creation and management
-- **[Rewards](./rewards.md)** - See how rewards work with webhooks
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Events](./events)** - Learn about sending events to Badger
+- **[Badges](./badges)** - Understand badge creation and management
+- **[Rewards](./rewards)** - See how rewards work with webhooks
+- **[API Reference](./api-reference)** - Complete API documentation

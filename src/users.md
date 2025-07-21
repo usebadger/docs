@@ -121,7 +121,7 @@ userRewards.forEach((reward) => {
 
 ## Related Documentation
 
-- **[Badges](./badges.md)** - Learn about badge creation and management
-- **[Events](./events.md)** - Understand how to track user actions
-- **[Rewards](./rewards.md)** - See how rewards work with users
-- **[API Reference](./api-reference.md)** - Complete API documentation
+- **[Badges](./badges)** - Learn about badge creation and management
+- **[Events](./events)** - Understand how to track user actions
+- **[Rewards](./rewards)** - See how rewards work with users
+- **[API Reference](./api-reference)** - Complete API documentation

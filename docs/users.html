@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,16 +280,16 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="active">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="active">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Users</h1>
+            <h1 id="users" tabindex="-1">Users</h1>
 <p>Users in Badger are automatically created when you send events. There’s no need to manually create or manage user accounts - Badger handles this automatically as users interact with your app.</p>
-<h2>How Users Work</h2>
-<h3>Automatic Creation</h3>
+<h2 id="how-users-work" tabindex="-1">How Users Work</h2>
+<h3 id="automatic-creation" tabindex="-1">Automatic Creation</h3>
 <p>Users are created automatically when you send their first event:</p>
 <pre><code class="language-typescript">// This automatically creates user &quot;user123&quot; if they don't exist
 await badger.events.sendEvent({
@@ -275,7 +297,7 @@ await badger.events.sendEvent({
   event: &quot;login&quot;,
 });
 </code></pre>
-<h3>User Identification</h3>
+<h3 id="user-identification" tabindex="-1">User Identification</h3>
 <p>Users are identified by their <code>userId</code> - a unique string that you choose. This could be:</p>
 <ul>
 <li>A database ID from your user system</li>
@@ -283,8 +305,8 @@ await badger.events.sendEvent({
 <li>A username</li>
 <li>Any unique identifier you prefer</li>
 </ul>
-<h2>Getting User Information</h2>
-<h3>Get a Specific User</h3>
+<h2 id="getting-user-information" tabindex="-1">Getting User Information</h2>
+<h3 id="get-a-specific-user" tabindex="-1">Get a Specific User</h3>
 <pre><code class="language-typescript">const user = await badger.users.getUser(&quot;user123&quot;);
 
 console.log(`User ID: ${user.userId}`);
@@ -292,7 +314,7 @@ console.log(`Total points: ${user.points}`);
 console.log(`Created: ${user.createdAt}`);
 console.log(`Last activity: ${user.updatedAt}`);
 </code></pre>
-<h3>List All Users</h3>
+<h3 id="list-all-users" tabindex="-1">List All Users</h3>
 <pre><code class="language-typescript">// Get all users
 const { users } = await badger.users.getUsers();
 
@@ -300,8 +322,8 @@ const { users } = await badger.users.getUsers();
 const badge = await badger.badges.getBadge(&quot;task_mater&quot;);
 const { users } = await badge.getUsers();
 </code></pre>
-<h2>User Badges</h2>
-<h3>Get All User Badges</h3>
+<h2 id="user-badges" tabindex="-1">User Badges</h2>
+<h3 id="get-all-user-badges" tabindex="-1">Get All User Badges</h3>
 <pre><code class="language-typescript">// Get all badges for a user
 const { badges } = await badger.users.getUserBadges(&quot;user123&quot;);
 
@@ -311,7 +333,7 @@ const { badges } = await badger.users.getUserBadges(&quot;user123&quot;, {
   category: &quot;onboarding&quot;,
 });
 </code></pre>
-<h3>Get a Specific User Badge</h3>
+<h3 id="get-a-specific-user-badge" tabindex="-1">Get a Specific User Badge</h3>
 <pre><code class="language-typescript">const userBadge = await badger.users.getUserBadge(&quot;user123&quot;, &quot;first_purchase&quot;);
 
 console.log(`Badge: ${userBadge.badge.name}`);
@@ -319,7 +341,7 @@ console.log(`Status: ${userBadge.status}`);
 console.log(`Progress: ${userBadge.progress}%`);
 console.log(`Unlocked: ${userBadge.unlockedAt}`);
 </code></pre>
-<h3>Get Badge Progress Details</h3>
+<h3 id="get-badge-progress-details" tabindex="-1">Get Badge Progress Details</h3>
 <pre><code class="language-typescript">const userBadge = await badger.users.getUserBadge(&quot;user123&quot;, &quot;task_master&quot;);
 
 // Get detailed condition progress
@@ -332,12 +354,12 @@ conditions.forEach((condition) =&gt; {
   console.log(`Current value: ${condition.value}/${condition.target}`);
 });
 </code></pre>
-<h2>User Rewards</h2>
-<h3>Get User Points</h3>
+<h2 id="user-rewards" tabindex="-1">User Rewards</h2>
+<h3 id="get-user-points" tabindex="-1">Get User Points</h3>
 <pre><code class="language-typescript">const user = await badger.users.getUser(&quot;user123&quot;);
 console.log(`Total points: ${user.points}`);
 </code></pre>
-<h3>Get User Rewards</h3>
+<h3 id="get-user-rewards" tabindex="-1">Get User Rewards</h3>
 <pre><code class="language-typescript">// Get all rewards earned by a user
 const userRewards = await badger.users.getUserRewards(&quot;user123&quot;);
 
@@ -353,12 +375,12 @@ userRewards.forEach((reward) =&gt; {
   }
 });
 </code></pre>
-<h2>Related Documentation</h2>
+<h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
-<li><strong><a href="./badges.md">Badges</a></strong> - Learn about badge creation and management</li>
-<li><strong><a href="./events.md">Events</a></strong> - Understand how to track user actions</li>
-<li><strong><a href="./rewards.md">Rewards</a></strong> - See how rewards work with users</li>
-<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="./badges">Badges</a></strong> - Learn about badge creation and management</li>
+<li><strong><a href="./events">Events</a></strong> - Understand how to track user actions</li>
+<li><strong><a href="./rewards">Rewards</a></strong> - See how rewards work with users</li>
+<li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 
         </div>

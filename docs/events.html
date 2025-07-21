@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,15 +280,15 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="active">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="active">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>Events</h1>
+            <h1 id="events" tabindex="-1">Events</h1>
 <p>Events are the foundation of Badger’s gamification system. They represent user actions that can unlock badges and track progress. Every time a user performs an action you want to gamify, you send an event to Badger.</p>
-<h2>What are Events?</h2>
+<h2 id="what-are-events%3F" tabindex="-1">What are Events?</h2>
 <p>Events are user actions that you want to track for gamification. Examples include:</p>
 <ul>
 <li>User logins</li>
@@ -276,14 +298,14 @@
 <li>Learning milestones</li>
 <li>Fitness activities</li>
 </ul>
-<h2>Sending Events</h2>
-<h3>Basic Event</h3>
+<h2 id="sending-events" tabindex="-1">Sending Events</h2>
+<h3 id="basic-event" tabindex="-1">Basic Event</h3>
 <pre><code class="language-typescript">await badger.events.sendEvent({
   userId: &quot;user123&quot;,
   event: &quot;login&quot;,
 });
 </code></pre>
-<h3>Event with Metadata</h3>
+<h3 id="event-with-metadata" tabindex="-1">Event with Metadata</h3>
 <pre><code class="language-typescript">await badger.events.sendEvent({
   userId: &quot;user123&quot;,
   event: &quot;purchase_completed&quot;,
@@ -294,15 +316,15 @@
   },
 });
 </code></pre>
-<h2>Event Structure</h2>
-<h3>Required Fields</h3>
+<h2 id="event-structure" tabindex="-1">Event Structure</h2>
+<h3 id="required-fields" tabindex="-1">Required Fields</h3>
 <ul>
 <li><strong>userId</strong> - Unique identifier for the user</li>
 <li><strong>event</strong> - Name of the action being tracked</li>
 </ul>
-<h2>Metadata</h2>
+<h2 id="metadata" tabindex="-1">Metadata</h2>
 <p>Metadata provides additional context about events and can be used in badge conditions.</p>
-<h3>Simple Metadata</h3>
+<h3 id="simple-metadata" tabindex="-1">Simple Metadata</h3>
 <pre><code class="language-typescript">await badger.events.sendEvent({
   userId: &quot;user123&quot;,
   event: &quot;task_completed&quot;,
@@ -313,8 +335,8 @@
   },
 });
 </code></pre>
-<h2>Event Timing</h2>
-<h3>When to Send Events</h3>
+<h2 id="event-timing" tabindex="-1">Event Timing</h2>
+<h3 id="when-to-send-events" tabindex="-1">When to Send Events</h3>
 <p>Send events as close to the user action as possible:</p>
 <pre><code class="language-typescript">async function completeTask(userId: string, taskId: string) {
   // Update your database
@@ -333,12 +355,12 @@
   }
 }
 </code></pre>
-<h2>Related Documentation</h2>
+<h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
-<li><strong><a href="./badges.md">Badges</a></strong> - Learn about badge creation and management</li>
-<li><strong><a href="./conditions.md">Conditions</a></strong> - Understand how events trigger badge conditions</li>
-<li><strong><a href="./users.md">Users</a></strong> - See how events create and track users</li>
-<li><strong><a href="./api-reference.md">API Reference</a></strong> - Complete API documentation</li>
+<li><strong><a href="./badges">Badges</a></strong> - Learn about badge creation and management</li>
+<li><strong><a href="./conditions">Conditions</a></strong> - Understand how events trigger badge conditions</li>
+<li><strong><a href="./users">Users</a></strong> - See how events create and track users</li>
+<li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 
         </div>

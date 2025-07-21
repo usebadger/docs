@@ -195,6 +195,28 @@
             color: #5a8a5e;
         }
         
+        /* Anchor link styling */
+        .header-anchor {
+            color: #72a276;
+            text-decoration: none;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        h1:hover .header-anchor,
+        h2:hover .header-anchor,
+        h3:hover .header-anchor,
+        h4:hover .header-anchor,
+        h5:hover .header-anchor,
+        h6:hover .header-anchor {
+            opacity: 1;
+        }
+        
+        .header-anchor:hover {
+            color: #5a8a5e;
+        }
+        
         .highlight {
             background: rgba(232, 116, 97, 0.1);
             padding: 1rem;
@@ -258,24 +280,24 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index.html" class="">Introduction</a><a href="getting-started.html" class="">Getting Started</a><a href="badges.html" class="">Badges</a><a href="conditions.html" class="">Conditions</a><a href="rewards.html" class="">Rewards</a><a href="users.html" class="">Users</a><a href="events.html" class="">Events</a><a href="webhooks.html" class="">Webhooks</a><a href="billing.html" class="">Billing</a><a href="api-reference.html" class="active">API Reference</a><a href="terms.html" class="">Terms</a><a href="privacy.html" class="">Privacy</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="active">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1>API Reference</h1>
-<h2>SDK Documentation</h2>
+            <h1 id="api-reference" tabindex="-1">API Reference</h1>
+<h2 id="sdk-documentation" tabindex="-1">SDK Documentation</h2>
 <p>The official Badger SDK provides a simple way to integrate Badger into your application:</p>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@usebadger/sdk">@usebadger/sdk on npm</a></strong> - Install the SDK</li>
 </ul>
-<h2>REST API Documentation</h2>
+<h2 id="rest-api-documentation" tabindex="-1">REST API Documentation</h2>
 <p>For direct API access and advanced integrations:</p>
 <ul>
-<li><strong><a href="https://api.usebadger.dev/docs">API Documentation</a></strong> - Complete REST API reference</li>
+<li><strong><a href="https://docs.api.usebadger.dev">API Documentation</a></strong> - Complete REST API reference</li>
 </ul>
-<h2>Getting Help</h2>
+<h2 id="getting-help" tabindex="-1">Getting Help</h2>
 <ul>
 <li><strong><a href="mailto:hello@usebadger.dev">Email Support</a></strong> - Contact our support team</li>
 </ul>

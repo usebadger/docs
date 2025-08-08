@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rewards - Badger Documentation</title>
+    <title>Relationships - Badger Documentation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
         
@@ -280,78 +280,99 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="relationships" class="">Relationships</a><a href="rewards" class="active">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="">Badges</a><a href="conditions" class="">Conditions</a><a href="relationships" class="active">Relationships</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
     <main class="main">
         <div class="content">
-            <h1 id="rewards" tabindex="-1">Rewards</h1>
-<p>Rewards are what users receive when they unlock badges. Badger supports both built-in points and custom reward types to give users meaningful incentives for their achievements.</p>
-<p><strong>Note</strong>: Rewards are completely optional - sometimes the satisfaction of unlocking a badge itself is reward enough! Many users are motivated by achievement and progress tracking alone.</p>
-<h2 id="types-of-rewards" tabindex="-1">Types of Rewards</h2>
-<h3 id="points" tabindex="-1">Points</h3>
-<p>The simplest type of reward - award points to users when they unlock badges.</p>
-<pre><code class="language-typescript">{
-  type: &quot;points&quot;,
-  points: 100
-}
-</code></pre>
-<p>Points are automatically added to the user’s total and can be used for:</p>
-<ul>
-<li>Unlocking premium features</li>
-<li>Purchasing items in your app</li>
-<li>Leaderboard rankings</li>
-<li>Special access to content</li>
-</ul>
-<h3 id="custom-reward-types" tabindex="-1">Custom Reward Types</h3>
-<p>Create your own reward types for specific use cases:</p>
-<pre><code class="language-typescript">{
-  type: &quot;discount_code&quot;,
-  metadata: {
-    code: &quot;BADGE10&quot;,
-    percentage: 10,
-    validUntil: &quot;2024-12-31T23:59:59Z&quot;
-  }
-}
-</code></pre>
-<h2 id="user-reward-tracking" tabindex="-1">User Reward Tracking</h2>
-<p>Badger automatically tracks all rewards earned by users:</p>
-<h3 id="get-user-points" tabindex="-1">Get User Points</h3>
-<pre><code class="language-typescript">const user = await badger.users.getUser(&quot;user123&quot;);
-console.log(`Total points: ${user.points}`);
-</code></pre>
-<h3 id="get-user-rewards" tabindex="-1">Get User Rewards</h3>
-<pre><code class="language-typescript">// Get all rewards earned by a user
-const userRewards = await badger.users.getUserRewards(&quot;user123&quot;);
-
-userRewards.forEach((reward) =&gt; {
-  console.log(`Reward: ${reward.type}`);
-  console.log(`Earned: ${reward.earnedAt}`);
-  console.log(`Badge: ${reward.badgeId}`);
-
-  if (reward.type === &quot;points&quot;) {
-    console.log(`Points: ${reward.points}`);
-  } else {
-    console.log(`Metadata: ${JSON.stringify(reward.metadata)}`);
-  }
-});
-</code></pre>
-<h2 id="webhooks-for-rewards" tabindex="-1">Webhooks for Rewards</h2>
-<p>Configure webhooks to get real-time notifications when users earn rewards:</p>
-<h3 id="enable-reward-webhooks" tabindex="-1">Enable Reward Webhooks</h3>
+            <h1 id="relationships" tabindex="-1">Relationships</h1>
+<p>Badge relationships allow you to create complex achievement systems with dependencies, hierarchies, and progression paths. Badger supports two main types of relationships: parent-child relationships and badge conditions.</p>
+<h2 id="parent-child-relationships" tabindex="-1">Parent-Child Relationships</h2>
+<p>Parent-child relationships create hierarchical badge structures where completing a parent badge unlocks its children.</p>
+<h3 id="how-it-works" tabindex="-1">How It Works</h3>
+<p>When a user completes a parent badge, all of its child badges are automatically unlocked. This creates a cascading effect that can represent progression paths, skill trees, or achievement categories.</p>
+<h3 id="creating-parent-child-relationships" tabindex="-1">Creating Parent-Child Relationships</h3>
+<h4 id="using-the-dashboard" tabindex="-1">Using the Dashboard</h4>
 <ol>
 <li>Go to your app dashboard</li>
-<li>Navigate to <strong>Settings</strong> → <strong>Webhooks</strong></li>
-<li>Enter your webhook URL</li>
-<li>Enable “User Reward Unlocked”</li>
-<li>Save the configuration</li>
+<li>Navigate to a badge you want to make a parent</li>
+<li>Click “Manage relationships”</li>
+<li>Add child badges to create the hierarchy</li>
+<li>Save your changes</li>
 </ol>
+<h3 id="use-cases" tabindex="-1">Use Cases</h3>
+<h4 id="skill-trees" tabindex="-1">Skill Trees</h4>
+<p>Create branching progression paths where users must complete prerequisites:</p>
+<pre><code>Beginner Developer
+├── First Commit
+├── First Pull Request
+└── First Review
+    └── Senior Developer
+        ├── 100 Commits
+        ├── 50 Reviews
+        └── Lead Developer
+</code></pre>
+<h4 id="achievement-categories" tabindex="-1">Achievement Categories</h4>
+<p>Group related achievements under parent badges:</p>
+<pre><code>Gaming Master
+├── Combat Achievements
+│   ├── First Kill
+│   ├── 100 Kills
+│   └── Boss Slayer
+├── Exploration Achievements
+│   ├── First Discovery
+│   ├── Map Explorer
+│   └── World Traveler
+└── Social Achievements
+    ├── First Friend
+    ├── Guild Member
+    └── Community Leader
+</code></pre>
+<h4 id="learning-paths" tabindex="-1">Learning Paths</h4>
+<p>Structure educational content with clear progression:</p>
+<pre><code>JavaScript Fundamentals
+├── Variables &amp; Types
+├── Functions &amp; Scope
+├── Arrays &amp; Objects
+└── Advanced JavaScript
+    ├── Promises &amp; Async
+    ├── ES6+ Features
+    └── Design Patterns
+</code></pre>
+<h4 id="milestones" tabindex="-1">Milestones</h4>
+<p>Create linear progression paths with 1:1 relationships:</p>
+<pre><code>User Level Progression
+├── Level 1 (New User)
+├── Level 2 (Active User)
+├── Level 3 (Regular User)
+├── Level 4 (Power User)
+└── Level 5 (Expert User)
+</code></pre>
+<p>Each level requires completing the previous level, creating a single linear path of progression.</p>
+<h4 id="level-up-badges" tabindex="-1">Level Up Badges</h4>
+<p>Create badges that inherit properties from their children, allowing for state-based progression:</p>
+<pre><code>Achievement Badge (Root)
+├── Bronze Achievement (Child)
+├── Silver Achievement (Child)
+└── Gold Achievement (Child)
+</code></pre>
+<p>The root badge can display different states (bronze/silver/gold) based on which child badges the user has unlocked. This creates a single badge that evolves as users progress.</p>
+<h2 id="badge-conditions" tabindex="-1">Badge Conditions</h2>
+<p>Badge conditions create dependencies between badges where you must complete all child badges to unlock the parent badge. This is the opposite of parent-child relationships and allows for many:many relationships.</p>
+<h3 id="how-it-works-1" tabindex="-1">How It Works</h3>
+<p>When you add a badge condition to a badge, users must complete all of the prerequisite badges before they can unlock the parent badge. This creates the opposite relationship of parent-child - instead of unlocking children when the parent is completed, you must complete all children to unlock the parent.</p>
+<h3 id="use-cases-1" tabindex="-1">Use Cases</h3>
+<h4 id="prerequisites" tabindex="-1">Prerequisites</h4>
+<p>Require specific achievements before unlocking advanced content, such as onboarding.</p>
+<h4 id="reverse-trees" tabindex="-1">Reverse Trees</h4>
+<p>Create a tree where all of the child skills must be completed to unlock a single skill.</p>
 <h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
 <li><strong><a href="./badges">Badges</a></strong> - Learn about badge creation and management</li>
-<li><strong><a href="./events">Events</a></strong> - See how to track user actions</li>
-<li><strong><a href="./webhooks">Webhooks</a></strong> - Complete webhook documentation</li>
+<li><strong><a href="./conditions">Conditions</a></strong> - Understand different types of badge conditions</li>
+<li><strong><a href="./users">Users</a></strong> - Manage user badges and progress</li>
+<li><strong><a href="./events">Events</a></strong> - Track user actions for badge unlocking</li>
 <li><strong><a href="./api-reference">API Reference</a></strong> - Complete API documentation</li>
 </ul>
 

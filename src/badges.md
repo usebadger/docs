@@ -99,10 +99,6 @@ Organize your badges into custom categories to help users understand different t
 - **Social** - Community and sharing badges
 - **Special** - Limited-time or exclusive badges
 
-## Badge Hierarchies
-
-Create badge trees and progression systems by linking badges together. Just drag and drop a badge onto a parent to create a relationship. Child badges will only be visibile to a user once the parent badge is unlocked.
-
 ## Managing Badges
 
 ### List All Badges
@@ -126,6 +122,7 @@ const { badges: userBadges } = await badger.badges.getBadges({
 ## Related Documentation
 
 - **[Conditions](./conditions)** - Learn about different types of badge conditions
+- **[Relationships](./relationships)** - Create badge hierarchies and dependencies
 - **[Rewards](./rewards)** - Understand how to add rewards to your badges
 - **[Events](./events)** - See how to track user actions effectively
 - **[Users](./users)** - Manage user badges and progress

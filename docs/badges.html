@@ -280,7 +280,7 @@
             <p>Documentation</p>
         </div>
         <nav class="nav">
-            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="active">Badges</a><a href="conditions" class="">Conditions</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
+            <a href="index" class="">Introduction</a><a href="getting-started" class="">Getting Started</a><a href="authentication" class="">Authentication</a><a href="badges" class="active">Badges</a><a href="conditions" class="">Conditions</a><a href="relationships" class="">Relationships</a><a href="rewards" class="">Rewards</a><a href="users" class="">Users</a><a href="events" class="">Events</a><a href="webhooks" class="">Webhooks</a><a href="billing" class="">Billing</a><a href="api-reference" class="">API Reference</a>
         </nav>
     </div>
     
@@ -367,8 +367,6 @@ const badge = await response.json();
 <li><strong>Social</strong> - Community and sharing badges</li>
 <li><strong>Special</strong> - Limited-time or exclusive badges</li>
 </ul>
-<h2 id="badge-hierarchies" tabindex="-1">Badge Hierarchies</h2>
-<p>Create badge trees and progression systems by linking badges together. Just drag and drop a badge onto a parent to create a relationship. Child badges will only be visibile to a user once the parent badge is unlocked.</p>
 <h2 id="managing-badges" tabindex="-1">Managing Badges</h2>
 <h3 id="list-all-badges" tabindex="-1">List All Badges</h3>
 <pre><code class="language-typescript">// Get all visible badges
@@ -388,6 +386,7 @@ const { badges: userBadges } = await badger.badges.getBadges({
 <h2 id="related-documentation" tabindex="-1">Related Documentation</h2>
 <ul>
 <li><strong><a href="./conditions">Conditions</a></strong> - Learn about different types of badge conditions</li>
+<li><strong><a href="./relationships">Relationships</a></strong> - Create badge hierarchies and dependencies</li>
 <li><strong><a href="./rewards">Rewards</a></strong> - Understand how to add rewards to your badges</li>
 <li><strong><a href="./events">Events</a></strong> - See how to track user actions effectively</li>
 <li><strong><a href="./users">Users</a></strong> - Manage user badges and progress</li>

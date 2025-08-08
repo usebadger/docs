@@ -28,6 +28,7 @@ const pages = [
   },
   { title: "Badges", file: "badges.md", url: "badges" },
   { title: "Conditions", file: "conditions.md", url: "conditions" },
+  { title: "Relationships", file: "relationships.md", url: "relationships" },
   { title: "Rewards", file: "rewards.md", url: "rewards" },
   { title: "Users", file: "users.md", url: "users" },
   { title: "Events", file: "events.md", url: "events" },

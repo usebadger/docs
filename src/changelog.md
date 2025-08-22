@@ -11,7 +11,7 @@
 
 ## v1.2.0
 
-2015-08-14
+2025-08-14
 
 ### Features
 
@@ -24,3 +24,12 @@
 
 - Fixed an issue with unrelated badges being returned from the fetchUserBadge endpoint
 - Fixed an error with the average condition using the wrong datapoint
+
+## v1.3.0
+
+2025-08-22
+
+### Features
+
+- You can now try out Badger without creating an account
+- When signing up, we will spin up some demo badges to get you started
